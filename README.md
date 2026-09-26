@@ -1,23 +1,53 @@
-# 📚 ربات تلگرام فروش جزوه
+<div align="center">
 
-ربات تلگرامی برای فروش جزوه و فایل‌های آموزشی، با پنل مدیریت کامل داخل ربات.
+# 📚 Telegram Booklet Shop Bot
 
-## ✨ امکانات
-- ثبت‌نام کاربر (نام، کد ملی، موبایل، استان، پایهٔ تحصیلی)
-- دسته‌بندی محصولات بر اساس موضوع و پایه
-- خرید با کارت‌به‌کارت و ارسال فیش → تایید/رد توسط ادمین و **تحویل خودکار فایل**
-- کیف پول، کد تخفیف (درصدی/مبلغی، سقف استفاده برای هر کاربر)
-- لینک دعوت و پاداش معرفی
-- امتیازدهی به خرید
-- عضویت اجباری در کانال
-- پنل ادمین: مدیریت محصولات و دسته‌ها، کوپن‌ها، پیام همگانی، ویرایش همهٔ متن‌ها و تنظیمات از داخل ربات
+**A Telegram bot for selling educational booklets and study files**, with student registration, receipt-based payments, automatic file delivery, coupons, a wallet and a full admin panel inside the bot.
 
-## 🧰 تکنولوژی
-Python · python-telegram-bot · aiosqlite
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![python-telegram-bot](https://img.shields.io/badge/python--telegram--bot-21%2B-2CA5E0?logo=telegram&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-aiosqlite-003B57?logo=sqlite&logoColor=white)
 
-## 🚀 راه‌اندازی
+</div>
+
+---
+
+## ✨ Features
+
+### 🎓 For students
+- **Step-by-step registration:** full name, national ID (validated), mobile number (contact share), province and grade. Persian digits are normalized automatically.
+- A **catalog by category and grade**, with product details and prices.
+- **Payment by card-to-card receipt:** the student uploads a photo of the receipt and the admin approves or rejects it with a reason. **The file is delivered automatically on approval.**
+- **Wallet** balance and **discount coupons** (percentage or fixed, with total and per-user limits).
+- **Referral link** with rewards, plus **post-purchase rating**.
+- **Mandatory channel membership** (public or private channels).
+- Support contact.
+
+### 🛠️ Admin panel
+- Products: upload file, title, description, price, category and grade, all editable.
+- Category and grade management.
+- Receipt review queue (approve or reject with a reason).
+- Coupon builder, wallet top-ups, **broadcasts**.
+- **Edit every bot text and setting** from inside the bot. Only the token and admin IDs live in `.env`.
+- Channel-join configuration.
+
+## 🧰 Tech Stack
+Python · python-telegram-bot · aiosqlite (async SQLite)
+
+## 🚀 Getting Started
 ```bash
 pip install -r requirements.txt
-cp .env.example .env   # BOT_TOKEN و ADMIN_IDS را وارد کنید
+cp .env.example .env      # BOT_TOKEN and ADMIN_IDS
+python bot.py
 ```
-دیتابیس در اولین اجرا به‌صورت خودکار و خالی ساخته می‌شود؛ بقیهٔ تنظیمات از پنل ادمین داخل ربات انجام می‌شود.
+The database is created **empty on first run**.
+
+## 📁 Project Structure
+```
+config/      # env loading, conversation states
+database/    # async SQLite layer and default settings/texts
+handlers/    # registration, user shop flows, admin panel
+```
+
+---
+<div align="center">Built by <a href="https://github.com/mohagheghm511">@mohagheghm511</a></div>
