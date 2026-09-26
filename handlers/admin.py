@@ -202,10 +202,11 @@ async def adm_prods(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await q.edit_message_text("📚 <b>مدیریت جزوات</b>", reply_markup=Kb(kb), parse_mode=ParseMode.HTML)
 
 
-async def adm_prod_detail(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def adm_prod_detail(update: Update, context: ContextTypes.DEFAULT_TYPE, pid: int = None):
     q = update.callback_query
     await q.answer()
-    pid = int(q.data.split("_")[-1])
+    if pid is None:
+        pid = int(q.data.split("_")[-1])
     context.user_data["adm_pid"] = pid
 
     async with aiosqlite.connect(DB_PATH) as db:
@@ -418,8 +419,8 @@ async def adm_toggle_prod(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await db.execute("UPDATE products SET is_active=1-is_active WHERE id=?", (pid,))
         await db.commit()
     context.user_data["adm_pid"] = pid
-    q.data = f"adm_prod_{pid}"
-    await adm_prod_detail(update, context)
+    # در python-telegram-bot نسخه ۲۰ به بعد آبجکت‌ها تغییرناپذیرند؛ به‌جای عوض کردن q.data شناسه را مستقیم می‌دهیم
+    await adm_prod_detail(update, context, pid)
 
 
 async def adm_del_prod(update: Update, context: ContextTypes.DEFAULT_TYPE):
