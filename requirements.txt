@@ -1,2 +1,8 @@
-python-telegram-bot>=21
-aiosqlite
+python-telegram-bot>=21,<23
+aiosqlite>=0.19
+pypdf>=3.17
+reportlab>=4.0
+Pillow>=10.0
+arabic-reshaper>=3.0
+python-bidi>=0.4
+jdatetime>=4.1
